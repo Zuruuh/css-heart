@@ -1,0 +1,53 @@
+$clr-primary: #9356dc;
+$clr-secondary: #ff79da;
+
+body {
+  overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.heart {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > input[type='checkbox'] {
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+  }
+  & > div.heart-icon::before {
+    content: '\f004';
+    width: 32px;
+    height: 32px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    stroke-width: 16px;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 400;
+    font-size: 32px;
+    pointer-events: none;
+    user-select: none;
+  }
+  & > input:checked + div.heart-icon::before {
+    font-weight: 900;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(
+      45deg,
+      $clr-secondary 0%,
+      $clr-primary 81%
+    );
+  }
+}
