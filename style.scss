@@ -1,5 +1,5 @@
-$clr-primary: #9356dc;
-$clr-secondary: #ff79da;
+$clr-primary: rgb(147, 86, 220, 1);
+$clr-secondary: rgb(255, 121, 218, 1);
 
 body {
   overflow: hidden;
@@ -26,28 +26,41 @@ body {
     height: 32px;
     opacity: 0;
   }
-  & > div.heart-icon::before {
-    content: '\f004';
-    width: 32px;
-    height: 32px;
-    background-clip: text;
-    -webkit-background-clip: text;
-    stroke-width: 16px;
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 400;
-    font-size: 32px;
-    pointer-events: none;
-    user-select: none;
+}
+
+input[type='checkbox']:hover + .heart-icon {
+  transform: scale(1.1);
+  transition: transform 0.05s ease-in;
+}
+
+div.heart-icon::before {
+  content: '\f004';
+  width: 32px;
+  height: 32px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 400;
+  font-size: 32px;
+  pointer-events: none;
+  user-select: none;
+  background-color: transparent;
+}
+
+input:checked + div.heart-icon::before {
+  font-weight: 900;
+  color: transparent;
+  background-image: linear-gradient(45deg, $clr-secondary 0%, $clr-primary 81%);
+  animation-name: heart;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heart {
+  from {
+    opacity: 0;
   }
-  & > input:checked + div.heart-icon::before {
-    font-weight: 900;
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-image: linear-gradient(
-      45deg,
-      $clr-secondary 0%,
-      $clr-primary 81%
-    );
+  to {
+    opacity: 1;
   }
 }
